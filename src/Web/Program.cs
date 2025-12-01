@@ -21,6 +21,8 @@ else
     app.UseHsts();
 }
 
+app.UseExceptionHandler(options => { });
+
 app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -31,14 +33,14 @@ app.UseSwaggerUi(settings =>
     settings.DocumentPath = "/api/specification.json";
 });
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapRazorPages();
+app.MapEndpoints();
+
 
 app.MapFallbackToFile("index.html");
-
-app.UseExceptionHandler(options => { });
-
-
-app.MapEndpoints();
 
 app.Run();
 

@@ -12,7 +12,7 @@ public class Auth : EndpointGroupBase
 {
     public override void Map(RouteGroupBuilder group)
     {
-        // base route biasanya jadi: /api/Auth (tergantung MapEndpoints() kamu)
+        // base route: /api/Auth
         // endpoint:
         // POST /api/Auth/login
         // POST /api/Auth/register
@@ -24,7 +24,6 @@ public class Auth : EndpointGroupBase
 
     public record LoginRequest(string UserNameOrEmail, string Password);
     public record RegisterRequest(string Email, string Password);
-
     public record LoginResponse(string AccessToken, DateTime ExpiresAtUtc);
 
     public async Task<Results<Ok<LoginResponse>, UnauthorizedHttpResult>> Login(
